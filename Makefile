@@ -2,7 +2,7 @@
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_NAME = wikimedia-opensearch-streams
+PROJECT_NAME = WikimediaOpensearchStreams
 PYTHON_VERSION = 3.12
 PYTHON_INTERPRETER = python
 

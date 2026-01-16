@@ -3,7 +3,7 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "wikimedia_opensearch_streams"
+name = "WikimediaOpensearchStreams"
 version = "0.1.0"
 description = "A robust Python pipeline for Wikimedia Opensearch Streams."
 authors = [
