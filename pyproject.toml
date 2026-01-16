@@ -40,6 +40,12 @@ dev = [
     "testcontainers[kafka]>=3.7.0"
 ]
 
+[tool.flit.sdist]
+exclude = ["tests/*", "terraform/*", "docker/*"]
+
+[tool.flit.module]
+name = "src"
+
 [tool.ruff]
 line-length = 100
 target-version = "py312"
