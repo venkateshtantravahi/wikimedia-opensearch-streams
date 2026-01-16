@@ -1,0 +1,57 @@
+{
+  "type": "record",
+  "name": "WikimediaRecentChange",
+  "namespace": "com.wikimedia.events",
+  "fields": [
+    {"name": "id", "type": ["null", "long"], "default": null},
+    {"name": "type", "type": "string"},
+    {"name": "title", "type": "string"},
+    {"name": "user", "type": "string"},
+    {"name": "bot", "type": "boolean"},
+    {"name": "timestamp", "type": "long"},
+    {"name": "comment", "type": ["null", "string"], "default": null},
+    {"name": "wiki", "type": ["null", "string"], "default": null},
+    {"name": "server_name", "type": ["null", "string"], "default": null},
+    {"name": "server_url", "type": ["null", "string"], "default": null},
+    {"name": "server_script_path", "type": ["null", "string"], "default": null},
+    {"name": "namespace", "type": ["null", "int"], "default": null},
+    {
+      "name": "meta",
+      "type": {
+        "type": "record",
+        "name": "EventMeta",
+        "fields": [
+          {"name": "id", "type": "string"},
+          {"name": "dt", "type": "string"},
+          {"name": "domain", "type": "string"},
+          {"name": "stream", "type": "string"},
+          {"name": "request_id", "type": ["null", "string"], "default": null}
+        ]
+      }
+    },
+    {
+      "name": "length",
+      "type": ["null", {
+        "type": "record",
+        "name": "RevisionLength",
+        "fields": [
+          {"name": "old", "type": ["null", "long"], "default": null},
+          {"name": "new", "type": ["null", "long"], "default": null}
+        ]
+      }],
+      "default": null
+    },
+    {
+      "name": "revision",
+      "type": ["null", {
+        "type": "record",
+        "name": "RevisionIDs",
+        "fields": [
+          {"name": "old", "type": ["null", "long"], "default": null},
+          {"name": "new", "type": ["null", "long"], "default": null}
+        ]
+      }],
+      "default": null
+    }
+  ]
+}
