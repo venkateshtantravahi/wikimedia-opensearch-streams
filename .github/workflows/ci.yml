@@ -1,0 +1,44 @@
+name: CI Pipeline
+
+# Trigger on Pull Requests to main and pushes to main
+on:
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+      - '**.md'          # Ignore all Markdown files anywhere
+      - 'docs/**'        # Ignore the documentation folder
+      - 'LICENSE'        # Ignore license
+      - '.gitignore'     # Ignore gitignore
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'LICENSE'
+      - '.gitignore'
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.12"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev]  # Installs your project + dev deps
+        pip install pytest ruff
+
+    - name: Lint with Ruff
+      run: |
+        # Stop the build if there are Python syntax errors or undefined names
+        ruff check . --output-format=github
+
+    - name: Run Tests
+      run: |
+        pytest tests/

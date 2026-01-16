@@ -1,0 +1,56 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "wikimedia_opensearch_streams"
+version = "0.1.0"
+description = "A robust Python pipeline for Wikimedia Opensearch Streams."
+authors = [
+  { name = "Venkatesh Tantravahi" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License"
+]
+
+dependencies = [
+    # Core Kafka & Streams
+    "confluent-kafka[avro,json]",
+    "quixstreams",
+    "sseclient-py",
+
+    # Sink & Infrastructure
+    "opensearch-py",
+    "python-dotenv",
+
+    # Observability
+    "python-json-logger",
+    "prometheus-client"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "ruff>=0.1.9",
+    "pre-commit>=3.5.0",
+    "testcontainers[kafka]>=3.7.0"
+]
+
+[tool.flit.sdist]
+exclude = ["tests/*", "terraform/*", "docker/*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Import sorting (isort)
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
+force-sort-within-sections = true
